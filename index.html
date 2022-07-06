@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiki - Mua hàng online giá tốt, hàng chuẩn, ship nhanh</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://salt.tikicdn.com/media/upload/2018/12/03/0054c1410e38f1b9f3609c244974dd9c.png"
+      sizes="32x32"
+    />
+    <!-- bootstrap4 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+    <!-- fontawsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css"
+    />
+    <!-- font roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- style -->
+    <link rel="stylesheet" href="./client/assets/css/style.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header class="header">
+      <div class="container">
+        <div class="row header__main">
+          <div class="header__mobile">
+            <i class="bi bi-chevron-left"></i>
+          </div>
+          <div class="header__mobile"><i class="bi bi-list"></i></div>
+          <!-- logo -->
+          <div class="header__logo">
+            <img
+              class="row header__logo--img"
+              src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png"
+              alt=""
+            />
+            <img
+              class="row header__sublogo--img"
+              src="https://salt.tikicdn.com/ts/upload/e5/1d/22/61ff572362f08ead7f34ce410a4a6f96.png"
+              alt=""
+            />
+          </div>
+          <!-- search -->
+          <div class="header__search">
+            <div class="row header__search--top">
+              <input
+                type="text"
+                placeholder="Tìm sản phẩm, danh mục hay thương hiệu mong muốn ..."
+              />
+              <button class="search__button">
+                <i class="bi bi-search"></i>Tìm kiếm
+              </button>
+            </div>
+            <div class="row header__search--bottom">
+              <ul>
+                <li><a href="#">điện thoại</a></li>
+                <li><a href="#">điện thoại giá rẻ</a></li>
+                <li><a href="#">điện thoại samsung</a></li>
+                <li><a href="#">điện thoại iphone</a></li>
+                <li><a href="#">điện thoại s21 ultra</a></li>
+                <li><a href="#">điện thoại iphone13</a></li>
+                <li><a href="#">điện thoại cũ</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row header__right">
+            <div class="row">
+              <!-- auth -->
+              <div class="header__auth">
+                <div class="header__auth--logo">
+                  <a
+                    class="nav-link text-light"
+                    href="./admin/view/productForm.html"
+                  >
+                    <i class="bi bi-person-circle large"></i>
+                  </a>
+                </div>
+                <div class="header__auth--process">
+                  <a
+                    href="./admin/view/productForm.html"
+                    class="header__auth--login display-4"
+                    >Thêm sản phẩm</a
+                  >
+                  <p class="header__auth--user">
+                    Admin <i class="fa fa-sort-down"></i>
+                  </p>
+                </div>
+              </div>
+              <!-- cart -->
+              <div class="header__cart">
+                <div class="header__cart--count header__mobile">
+                  <!-- giỏ hàng -->
+                  <i class="bi bi-cart2 large" id="btnCart"></i>
+                  <!-- số lượng -->
+                  <span class="header__cart--quantity" id="cart-quantity"
+                    >0</span
+                  >
+                </div>
+                <span class="header__cart--cart">Giỏ hàng</span>
+              </div>
+            </div>
+            <!-- sale with tiki -->
+            <div class="row header__seller">
+              <i class="fa fa-store"></i> Bán hàng cùng Tiki
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="navigate">
+      <div class="container">
+        <ul class="navigate__links text-black-50">
+          <li class="navigate__item">
+            <a href="./index.html" class="navigate__link">Trang chủ</a>
+          </li>
+          <li class="navigate__item">
+            <a href="#" class="navigate__link"
+              ><i class="bi bi-chevron-right"></i>điện thoại</a
+            >
+          </li>
+          <li class="navigate__item active">
+            <a href="#" class="navigate__link"
+              ><i class="bi bi-chevron-right"></i>điện thoại cao cấp</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="body">
+      <div class="container">
+        <div class="wrapper">
+          <div class="navs">
+            <div id="category_products" class="navs__category">
+              <h4>THƯƠNG HIỆU</h4>
+              <div class="form-check" id="form-check-brand">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="brand"
+                    value="0"
+                    checked
+                  />
+                  <label class="form-check-label">Samsung</label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="brand"
+                    value="1"
+                    checked
+                  />
+                  <label class="form-check-label">Iphone</label>
+                </div>
+              </div>
+            </div>
+
+            <div id="category_address" class="navs__category">
+              <h4>ĐỊA CHỈ NHẬN HÀNG</h4>
+              <a href="#">Q1, P.Bến Nghé, Hồ Chí Minh</a>
+              <span class="changeAddress">Đổi địa chỉ</span>
+            </div>
+
+            <div id="category_services" class="navs__category">
+              <h4>DỊCH VỤ</h4>
+              <div class="form-check">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                  />
+                  <label class="form-check-label"
+                    ><img
+                      src="https://salt.tikicdn.com/ts/upload/f9/ad/0e/a8a97f5ac7661d637942b42796893662.png"
+                      alt=""
+                    />
+                    Giao siêu tốc 2H</label
+                  >
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                  />
+                  <label class="form-check-label"
+                    ><img
+                      src="https://salt.tikicdn.com/ts/upload/af/84/fc/2037c3b93a81767aed21358ebf3f8b8e.png"
+                      alt=""
+                    />
+                    Không giới hạn</label
+                  >
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                    checked
+                  />
+                  <label class="form-check-label">Rẻ hơn hoàn tiền</label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                    checked
+                  />
+                  <label class="form-check-label">Trả góp 0%</label>
+                </div>
+              </div>
+            </div>
+
+            <div id="category_sellAddress" class="navs__category">
+              <h4>NƠI BÁN</h4>
+              <div class="form-check">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                    checked
+                  />
+                  <label class="form-check-label">Hồ Chí Minh</label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                  />
+                  <label class="form-check-label">Hà Nội</label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                  />
+                  <label class="form-check-label">Đồng Nai</label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                  />
+                  <label class="form-check-label">Đà Nẵng</label>
+                </div>
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    name="option1"
+                    value="something"
+                  />
+                  <label class="form-check-label">Hồ Chí Minh</label>
+                </div>
+              </div>
+            </div>
+
+            <div id="category_rate" class="navs__category">
+              <h4>ĐÁNH GIÁ</h4>
+              <a href="#">
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star__text">từ 5 sao</span>
+              </a>
+              <a href="#">
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star-icon">★</span>
+                <span class="star__text">từ 4 sao</span>
+              </a>
+              <a href="#">
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star-icon filled">★</span>
+                <span class="star-icon">★</span>
+                <span class="star-icon">★</span>
+                <span class="star__text">từ 3 sao</span>
+              </a>
+            </div>
+
+            <div id="category_price" class="navs__category">
+              <h4>GIÁ</h4>
+              <span> <a href="#">Dưới 3.000.000</a></span>
+              <span><a href="#">Từ 3.000.000 đến 6.000.000</a></span>
+              <span><a href="#">Từ 6.000.000 đến 20.000.000</a></span>
+              <span><a href="#">Từ 20.000.000 đến 30.000.000</a></span>
+              <span> <a href="#">Trên 30.000.000</a></span>
+              <div class="chose__price">
+                <span>Chọn khoảng giá</span>
+                <div class="chose__price--input">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="input__price--from"
+                  />
+                  <span>-</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="input__price--to"
+                  />
+                </div>
+              </div>
+              <button class="btn-tiki-light">Áp dụng</button>
+            </div>
+
+            <div id="category_price" class="navs__category">
+              <h4>THƯƠNG HIỆU</h4>
+            </div>
+
+            <div id="category_price" class="navs__category">
+              <h4>CAMERA SAU</h4>
+            </div>
+          </div>
+          <div class="body__content">
+            <!-- keywword -->
+            <p class="search__result--text">
+              Kết quả tìm kiếm cho `điện thoại`
+            </p>
+            <!-- tab -->
+            <div class="search__tabs">
+              <span class="search__tabs--item active">Phổ biến</span>
+              <span class="search__tabs--item">Bán chạy</span>
+              <span class="search__tabs--item">Hàng Mới</span>
+              <span class="search__tabs--item">Giá Thấp</span>
+              <span class="search__tabs--item">Giá Cao</span>
+              <span class="search__tabs--item"
+                >Giá <i class="bi bi-arrow-down-up"></i
+              ></span>
+            </div>
+            <!-- tag -->
+            <div class="search__tag" id="search__tag">
+              <span class="search__tag--img"
+                ><img
+                  src="https://salt.tikicdn.com/ts/upload/f9/ad/0e/a8a97f5ac7661d637942b42796893662.png"
+                  alt=""
+              /></span>
+              <span class="search__tag--img"
+                ><img
+                  src="https://salt.tikicdn.com/ts/upload/af/84/fc/2037c3b93a81767aed21358ebf3f8b8e.png"
+                  alt=""
+              /></span>
+              <span class="search__tag--item"
+                >Rẻ hơn hoàn tiền<i class="bi bi-x-circle-fill"></i
+              ></span>
+              <span class="search__tag--item"
+                >iphone<i class="bi bi-x-circle-fill"></i
+              ></span>
+              <span class="search__tag--item"
+                >samsung<i class="bi bi-x-circle-fill"></i
+              ></span>
+
+              <span class="search__tag--del">Xoá tất cả</span>
+            </div>
+            <!-- content -->
+            <div class="search__content" id="search__content">
+              <div class="product__item freeShip cheapRefund rating sold">
+                <div class="product__item--img">
+                  <img
+                    class="product__item--img--main"
+                    src="https://salt.tikicdn.com/cache/200x200/ts/product/9e/44/ea/2b7ba151d4de1904beca5a66d383dad4.jpg.webp"
+                    alt=""
+                  />
+                  <img
+                    class="product__item--img--tag"
+                    src="https://salt.tikicdn.com/ts/upload/dc/0d/49/ef9dc5d8164bd62b011e54276502b342.png"
+                    alt=""
+                  />
+                </div>
+
+                <p class="product__item--ad">Ad</p>
+                <p class="product__item--desc">
+                  Điện Thoại iPhone 13 128GB - Hàng Chính Hãng
+                </p>
+                <div class="produc__item--more">
+                  <div class="product__item--rating">
+                    <span class="star-icon filled">★</span>
+                    <span class="star-icon filled">★</span>
+                    <span class="star-icon">★</span>
+                    <span class="star-icon">★</span>
+                    <span class="star-icon">★</span>
+                    <span class="h">|</span>
+                  </div>
+                  <span class="product__item--sold">Đã bán 3</span>
+                </div>
+                <div class="product__item--price">
+                  <span class="item__price">99.000</span>
+                  <span class="item__unit">₫</span>
+                  <span class="item__sale">-99%</span>
+                </div>
+                <img
+                  src="https://salt.tikicdn.com/ts/upload/51/ac/cc/528e80fe3f464f910174e2fdf8887b6f.png"
+                  alt=""
+                  class="product__item--cheapRefund"
+                />
+                <button class="btn-tiki-light btn-addCart">
+                  <i class="bi bi-bag-plus"></i>
+                  Thêm vào giỏ hàng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <ul class="footer__col">
+            <li class="footer__header">
+              <h4>Hỗ trợ khách hàng</h4>
+            </li>
+            <li class="footer__item">
+              <a href="" class="footer__item--link"
+                >Hotline: 1900-6035<br />
+                (1000 đ/phút, 8-21h kể cả T7, CN)</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://hotro.tiki.vn/s/"
+                class="small-text"
+                target="_blank"
+                >Các câu hỏi thường gặp</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/lien-he/gui-yeu-cau"
+                class="small-text"
+                target="_blank"
+                >Gửi yêu cầu hỗ trợ</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://hotro.tiki.vn/s/article/lam-the-nao-de-toi-dat-hang-qua-website-tiki"
+                class="small-text"
+                target="_blank"
+                >Hướng dẫn đặt hàng</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://hotro.tiki.vn/s/article/dich-vu-giao-hang-tiet-kiem"
+                class="small-text"
+                target="_blank"
+                >Phương thức vận chuyển</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://hotro.tiki.vn/s/article/chinh-sach-doi-tra-san-pham-tai-tiki-nhu-the-nao"
+                class="small-text"
+                target="_blank"
+                >Chính sách đổi trả</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/khuyen-mai/huong-dan-tra-gop"
+                class="small-text"
+                target="_blank"
+                >Hướng dẫn trả góp</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://hotro.tiki.vn/s/article/dich-vu-giao-hang-tu-nuoc-ngoai"
+                class="small-text"
+                target="_blank"
+                >Chính sách hàng nhập khẩu</a
+              >
+            </li>
+          </ul>
+          <ul class="footer__col">
+            <li class="footer__header">
+              <h4>Về TIKI</h4>
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/thong-tin/gioi-thieu-ve-tiki"
+                class="small-text"
+                target="_blank"
+                >Giới thiệu Tiki</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tuyendung.tiki.vn/"
+                class="small-text"
+                target="_blank"
+                >Tuyển dụng</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/bao-mat-thanh-toan"
+                class="small-text"
+                target="_blank"
+                >Chính sách bảo mật thanh toán</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/bao-mat-thong-tin-ca-nhan"
+                class="small-text"
+                target="_blank"
+                >Chính sách bảo mật thông tin cá nhân</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://hotro.tiki.vn/s/article/chinh-sach-giai-quyet-khieu-nai"
+                class="small-text"
+                target="_blank"
+                >Chính sách giải quyết khiếu nại</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://hotro.tiki.vn/s/article/dieu-khoan-su-dung"
+                class="small-text"
+                target="_blank"
+                >Điều khoản sử dụng</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://hotro.tiki.vn/s/article/tiki-xu-la-gi"
+                class="small-text"
+                target="_blank"
+                >Giới thiệu Tiki Xu</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/khuyen-mai/tiki-tiep-thi-lien-ket"
+                class="small-text"
+                target="_blank"
+                >Tiếp thị liên kết cùng Tiki</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/chuong-trinh/ban-hang-doanh-nghiep"
+                class="small-text"
+                target="_blank"
+                >Bán hàng doanh nghiệp</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://www.tikinow.biz/%C4%91i%E1%BB%81u-kho%E1%BA%A3n-v%E1%BA%ADn-chuy%E1%BB%83n"
+                class="small-text"
+                target="_blank"
+                >Điều kiện vận chuyển</a
+              >
+            </li>
+          </ul>
+          <ul class="footer__col">
+            <li class="footer__header">
+              <h4>Hợp tác và liên kết</h4>
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/quy-che-hoat-dong-sgdtmdt"
+                class="small-text"
+                target="_blank"
+                >Quy chế hoạt động Sàn GDTMĐT</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                rel="noreferrer"
+                href="https://tiki.vn/khuyen-mai/ban-hang-cung-tiki"
+                class="small-text"
+                target="_blank"
+                >Bán hàng cùng Tiki</a
+              >
+            </li>
+            <li class="footer__header">
+              <h4>Chứng nhận bởi</h4>
+            </li>
+
+            <li class="footer__item row">
+              <a
+                href="https://hotro.tiki.vn/s/"
+                rel="noreferrer"
+                aria-label=""
+                target="_blank"
+                style="height: 32px"
+                ><img
+                  src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong-2.png"
+                  width="32"
+                  height="32"
+                  alt=""
+              /></a>
+              <a
+                href="http://online.gov.vn/Home/WebDetails/21193"
+                rel="noreferrer"
+                aria-label=""
+                target="_blank"
+                style="height: 32px"
+                ><img
+                  src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/bo-cong-thuong.svg"
+                  height="32"
+                  width="83"
+                  alt=""
+              /></a>
+            </li>
+          </ul>
+          <ul class="footer__col">
+            <li class="footer__header">
+              <h4>Phương thức thanh toán</h4>
+            </li>
+            <li class="footer__header">
+              <h4>Dịch vụ giao hàng</h4>
+            </li>
+            <li class="footer__item">
+              <a href="#" class="item__link"
+                ><img src="https://tikinow.biz/?src=footer" alt=""
+              /></a>
+            </li>
+          </ul>
+          <ul class="footer__col">
+            <li class="footer__header">
+              <h4>Kết nối với chung tôi</h4>
+            </li>
+            <li class="footer__item footer__social">
+              <a
+                rel="noreferrer"
+                href="https://www.facebook.com/tiki.vn/"
+                class="icon"
+                target="_blank"
+                title="Facebook"
+                ><svg
+                  width="32"
+                  height="33"
+                  viewBox="0 0 32 33"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 16.6665C0 7.82995 7.16344 0.666504 16 0.666504C24.8366 0.666504 32 7.82995 32 16.6665C32 25.5031 24.8366 32.6665 16 32.6665C7.16344 32.6665 0 25.5031 0 16.6665Z"
+                    fill="#3B5998"
+                  ></path>
+                  <path
+                    d="M17.6676 26.0742V17.3693H20.0706L20.389 14.3696H17.6676L17.6717 12.8682C17.6717 12.0858 17.7461 11.6666 18.8698 11.6666H20.372V8.6665H17.9687C15.082 8.6665 14.066 10.1217 14.066 12.5689V14.3699H12.2666V17.3696H14.066V26.0742H17.6676Z"
+                    fill="white"
+                  ></path></svg></a
+              ><a
+                rel="noreferrer"
+                href="https://www.youtube.com/user/TikiVBlog"
+                class="icon"
+                target="_blank"
+                title="Youtube"
+                ><svg
+                  width="32"
+                  height="33"
+                  viewBox="0 0 32 33"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 16.6665C0 7.82995 7.16344 0.666504 16 0.666504C24.8366 0.666504 32 7.82995 32 16.6665C32 25.5031 24.8366 32.6665 16 32.6665C7.16344 32.6665 0 25.5031 0 16.6665Z"
+                    fill="#FF0000"
+                  ></path>
+                  <path
+                    d="M24.1768 12.7153C23.9805 11.9613 23.4022 11.3675 22.6679 11.166C21.3371 10.7998 16.0001 10.7998 16.0001 10.7998C16.0001 10.7998 10.6632 10.7998 9.3323 11.166C8.59795 11.3675 8.01962 11.9613 7.82335 12.7153C7.4668 14.0818 7.4668 16.9331 7.4668 16.9331C7.4668 16.9331 7.4668 19.7843 7.82335 21.151C8.01962 21.905 8.59795 22.4987 9.3323 22.7003C10.6632 23.0665 16.0001 23.0665 16.0001 23.0665C16.0001 23.0665 21.3371 23.0665 22.6679 22.7003C23.4022 22.4987 23.9805 21.905 24.1768 21.151C24.5335 19.7843 24.5335 16.9331 24.5335 16.9331C24.5335 16.9331 24.5335 14.0818 24.1768 12.7153Z"
+                    fill="white"
+                  ></path>
+                  <path
+                    d="M14.3999 19.8665V14.5332L18.6666 17.2L14.3999 19.8665Z"
+                    fill="#FF0000"
+                  ></path></svg></a
+              ><a
+                rel="noreferrer"
+                href="http://zalo.me/589673439383195103"
+                class="icon"
+                target="_blank"
+                title="Zalo"
+              >
+                <svg
+                  width="32"
+                  height="33"
+                  viewBox="0 0 32 33"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 16.6665C0 7.82995 7.16344 0.666504 16 0.666504C24.8366 0.666504 32 7.82995 32 16.6665C32 25.5031 24.8366 32.6665 16 32.6665C7.16344 32.6665 0 25.5031 0 16.6665Z"
+                    fill="#3171F6"
+                  ></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M16.0002 5.99984C10.1091 5.99984 5.3335 10.4556 5.3335 15.9522C5.3335 19.0351 6.83597 21.7903 9.19473 23.6158V27.3332L12.8261 25.4565C13.8287 25.7477 14.8948 25.9046 16.0002 25.9046C21.8912 25.9046 26.6668 21.4488 26.6668 15.9522C26.6668 10.4556 21.8912 5.99984 16.0002 5.99984ZM9.87701 18.0804C10.6612 18.0804 11.3932 18.0759 12.125 18.0821C12.5362 18.0856 12.7584 18.2607 12.7962 18.5845C12.8442 18.9944 12.605 19.2664 12.1609 19.2714C11.3233 19.2809 10.4855 19.275 9.64768 19.275C9.40587 19.275 9.16349 19.2835 8.92244 19.2696C8.62187 19.2523 8.32787 19.1928 8.18415 18.8827C8.04006 18.5719 8.14015 18.293 8.33911 18.04C9.13968 17.0219 9.9412 16.0047 10.7422 14.9869C10.7898 14.9265 10.8357 14.8648 10.882 14.8043C10.833 14.7159 10.7554 14.7555 10.6949 14.7551C10.1336 14.7516 9.57215 14.7556 9.01082 14.7511C8.88254 14.7501 8.75044 14.7398 8.62701 14.7074C8.36663 14.6391 8.20854 14.4307 8.20644 14.182C8.20434 13.9329 8.35768 13.722 8.61749 13.6487C8.74025 13.6141 8.87282 13.6021 9.00111 13.6016C9.9252 13.5978 10.8493 13.5981 11.7734 13.6011C11.9367 13.6016 12.1011 13.6058 12.2597 13.6606C12.6101 13.7815 12.7643 14.1045 12.6219 14.4465C12.4978 14.7442 12.3001 14.9973 12.1027 15.2486C11.4252 16.1108 10.7452 16.9709 10.0663 17.8322C10.0136 17.899 9.96292 17.9676 9.87701 18.0804ZM14.0567 17.2472C14.0617 17.4255 14.1205 17.6652 14.2747 17.8732C14.6102 18.3257 15.2984 18.3243 15.6337 17.8723C15.9242 17.4805 15.9227 16.8304 15.6319 16.4389C15.4782 16.2321 15.273 16.1238 15.0169 16.1087C14.4487 16.0753 14.0509 16.5148 14.0567 17.2472ZM15.8889 15.3525C16.0151 15.1936 16.1404 15.0439 16.3538 15.0005C16.7609 14.9174 17.147 15.182 17.1525 15.596C17.1661 16.6319 17.161 17.668 17.1549 18.7041C17.1532 18.987 16.9789 19.2039 16.7239 19.2906C16.4567 19.3814 16.1783 19.3152 15.9998 19.09C15.9124 18.9797 15.875 18.9607 15.7531 19.0596C15.2812 19.4422 14.7489 19.5091 14.1735 19.3225C13.2505 19.023 12.8705 18.3038 12.7703 17.4228C12.6626 16.4766 12.9776 15.6645 13.8246 15.1666C14.5277 14.7532 15.2421 14.788 15.8889 15.3525ZM20.7838 17.1508C20.7824 17.416 20.8448 17.6634 21.0047 17.8783C21.3324 18.3189 22.0136 18.3224 22.348 17.8879C22.6494 17.4962 22.6504 16.8305 22.353 16.4346C22.1979 16.2282 21.9918 16.1217 21.7364 16.1082C21.1766 16.0785 20.7862 16.5065 20.7838 17.1508ZM19.4806 17.276C19.4411 15.9452 20.3142 14.9509 21.556 14.9127C22.8756 14.8721 23.8436 15.7594 23.883 17.0529C23.9229 18.3626 23.1194 19.2917 21.8803 19.416C20.5341 19.5509 19.4614 18.57 19.4806 17.276ZM19.0266 16.2455C19.0266 17.0484 19.0306 17.8513 19.025 18.6542C19.0218 19.1134 18.6166 19.4239 18.1809 19.3139C17.9192 19.2479 17.7236 18.9703 17.7231 18.6468C17.7211 17.2741 17.7223 15.9014 17.7223 14.5287C17.7223 14.287 17.7189 14.0451 17.7231 13.8035C17.7301 13.4051 17.9837 13.1465 18.3649 13.1428C18.7586 13.1389 19.0226 13.3985 19.0252 13.811C19.0302 14.6225 19.0266 15.434 19.0266 16.2455Z"
+                    fill="white"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+            <li class="footer__header">
+              <h4>Tải ứng dụng trên điện thoại</h4>
+            </li>
+            <li class="footer__item row footer__download">
+              <img
+                src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/qrcode.png"
+                width="80"
+                height="80"
+                alt=""
+                class="footer__qr col-5 img-fluid"
+              />
+              <div class="col-7 footer__download--store">
+                <a
+                  class="footer__android"
+                  rel="noreferrer"
+                  href="https://itunes.apple.com/vn/app/id958100553"
+                  target="_blank"
+                  aria-label=""
+                  ><img
+                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/appstore.png"
+                    alt=""
+                    class="img-fluid" /></a
+                ><a
+                  class="footer__apple"
+                  rel="noreferrer"
+                  href="https://play.google.com/store/apps/details?id=vn.tiki.app.tikiandroid"
+                  target="_blank"
+                  aria-label=""
+                  ><img
+                    src="https://frontend.tikicdn.com/_desktop-next/static/img/icons/playstore.png"
+                    alt=""
+                    class="img-fluid"
+                /></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="row footer__bottom">
+          <p>
+            Trụ sở chính: Tòa nhà Viettel, Số 285, đường Cách Mạng Tháng 8,
+            phường 12, quận 10, Thành phố Hồ Chí Minh
+          </p>
+          <p>
+            Tiki nhận đặt hàng trực tuyến và giao hàng tận nơi, chưa hỗ trợ mua
+            và nhận hàng trực tiếp tại văn phòng hoặc trung tâm xử lý đơn hàng
+          </p>
+          <p>
+            Giấy chứng nhận Đăng ký Kinh doanh số 0309532909 do Sở Kế hoạch và
+            Đầu tư Thành phố Hồ Chí Minh cấp lần đầu ngày 06/01/2010 và sửa đổi
+            lần thứ 23 ngày 14/02/2022
+          </p>
+          <p>© 2022 - Bản quyền của Công ty TNHH Ti Ki</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="paymentModal"
+      tabindex="-1"
+      aria-labelledby="paymentModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="paymentModalLabel">Giỏ hàng</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="body-cart">
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th colspan="2">Sản phẩm</th>
+                  <th scope="col">Giá</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody id="payment_body">
+                <tr>
+                  <th scope="row">1</th>
+                  <td>
+                    <img
+                      src="https://salt.tikicdn.com/cache/w78/ts/product/9e/44/ea/2b7ba151d4de1904beca5a66d383dad4.jpg.webp"
+                      alt=""
+                    />
+                  </td>
+                  <td>Điện Thoại iPhone 13 128GB - Hàng Chính Hãng - Hồng</td>
+                  <td class="td-price">32.000.000 đ</td>
+                  <td class="td-quant">
+                    <div class="input-group">
+                      <span class="bi bi-dash btn-quant"></span>
+                      <input
+                        type="text"
+                        name="quant[2]"
+                        class="form-control input-number"
+                        value="10"
+                        min="1"
+                        max="100"
+                      />
+                      <span class="bi bi-plus btn-quant"></span>
+                    </div>
+                  </td>
+                  <td class="td-total">32.000.000 đ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer row justify-content-between">
+            <div class="totalMoney">
+              <span class="totalMoney__text">Tổng tiền</span>
+              <span class="totalMoney__money" id="totalMoney__money"
+                >20.000.000 đ</span
+              >
+            </div>
+            <div>
+              <button
+                type="button"
+                class="btn-tiki-light btn-lg btn-tiki-dark"
+                data-dismiss="modal"
+              >
+                Đóng
+              </button>
+              <button
+                type="button"
+                class="btn-tiki-light btn-tiki-danger btn-lg"
+                id="btnRemove"
+              >
+                Xoá giỏ hàng
+              </button>
+              <button
+                type="button"
+                class="btn-tiki-light btn-tiki-primary btn-lg"
+                id="paymentDone"
+              >
+                Thanh toán
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS bootstrap4 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+      integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+      crossorigin="anonymous"
+    ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./client/assets/js/controller/addProductController.js"></script>
+    <script src="./client/assets/js/controller/paymentController.js"></script>
+    <script src="./client/assets/js/model/phoneModel.js"></script>
+    <script type="module" src="./client/assets/js/main/main.js"></script>
+  </body>
+</html>
