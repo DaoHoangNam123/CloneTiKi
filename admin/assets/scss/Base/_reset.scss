@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.875rem;
+  background-color: $color-bgc;
+}
+
+.row {
+  margin: 0;
+}
+.container {
+  max-width: 1270px;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 63.9375em) {
+  .container {
+    padding: 0;
+  }
+}

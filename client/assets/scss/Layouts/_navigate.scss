@@ -1,0 +1,31 @@
+.navigate {
+  padding-top: 1rem;
+  &__links {
+    list-style: none;
+    display: flex;
+    margin-bottom: 0;
+  }
+  &__item {
+    margin-right: 0.5rem;
+    a {
+      color: $color-text;
+      font-size: $fs-14;
+      font-weight: 300;
+      i {
+        font-size: 0.8rem;
+        margin-right: 0.4rem;
+      }
+    }
+  }
+  &__item.active {
+    a {
+      color: $color-text-dark;
+    }
+  }
+}
+
+@media only screen and (max-width: 63.9375em) {
+  .navigate {
+    display: none;
+  }
+}

@@ -1,0 +1,48 @@
+.modal-dialog {
+  max-width: 1024px;
+}
+.modal-content {
+  width: 95%;
+}
+
+#body-cart {
+  td img {
+    height: 3rem;
+  }
+  td .input-group {
+    input {
+      width: 1rem;
+      height: 1.5rem;
+      font-size: $fs-13;
+    }
+    .btn-quant {
+      margin: 0 0.2rem;
+      cursor: pointer;
+    }
+  }
+  .td-price {
+    font-weight: 700;
+    color: $color-dark;
+  }
+  .td-total {
+    font-weight: 700;
+    color: $color-red-sale;
+  }
+  .td-price,
+  .td-total {
+    min-width: 7.5rem;
+  }
+  .td-quant {
+    min-width: 6rem;
+  }
+  .btn-delete-cart:hover {
+    cursor: pointer;
+    color: $color-red-sale;
+  }
+}
+
+.totalMoney__money {
+  color: $color-red-sale;
+  font-size: $fs-24;
+  margin-left: 1rem;
+}

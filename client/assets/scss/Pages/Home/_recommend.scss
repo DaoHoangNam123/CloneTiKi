@@ -1,0 +1,40 @@
+.recommend {
+  position: relative;
+}
+.recommend__header {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  padding-left: 1rem;
+}
+.recommend__tabs {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 5;
+  padding: 0.4rem 0;
+  background-color: $color-bgc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  &--item {
+    padding: 0.4rem;
+    width: 9.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $color-white;
+    border-radius: 0.2rem;
+    img {
+      width: 3rem;
+      object-fit: cover;
+    }
+    cursor: pointer;
+  }
+}
+.wrapper.recommend__content {
+  padding: 0;
+  padding-bottom: 1000px;
+  flex-wrap: wrap;
+}

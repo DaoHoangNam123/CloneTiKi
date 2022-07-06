@@ -1,0 +1,38 @@
+.category {
+  margin-top: 1rem;
+  .wrapper {
+    padding-top: 1rem;
+    padding-bottom: 0;
+  }
+  .row {
+    background-color: #fff;
+    padding: 1rem;
+  }
+  &__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  &__content--item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 0.8rem 0.8rem 0.8rem;
+    // height: 8.25rem;
+    img {
+      width: 3.75rem;
+      border-radius: $fs-20;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    span {
+      text-align: center;
+      width: 6rem;
+      font-size: $fs-13;
+      color: $color-text-dark;
+    }
+  }
+}

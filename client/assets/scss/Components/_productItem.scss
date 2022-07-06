@@ -1,0 +1,108 @@
+.product__item {
+  transition: 0.3s;
+  width: calc(100% / 6);
+  padding: 0.6rem;
+  .product__item--img {
+    position: relative;
+    width: 100%;
+    &--main {
+      width: 100%;
+    }
+    &--tag {
+      position: absolute;
+      height: 12%;
+      left: 0;
+      bottom: 0;
+      display: none;
+    }
+  }
+
+  .product__item--ad {
+    display: none;
+    border-radius: 0.2rem;
+    font-size: $fs-11;
+    padding: 0.02rem 0.2rem;
+    background-color: $color-bgc;
+    margin-bottom: 0;
+  }
+  .product__item--desc {
+    font-size: $fs-13;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.5rem 0 0.2rem;
+  }
+
+  .produc__item--more {
+    .product__item--rating {
+      display: none;
+    }
+    .h {
+      color: $color-text-gray;
+    }
+    .product__item--sold {
+      font-size: $fs-11;
+      color: $color-text-gray;
+      display: none;
+    }
+  }
+
+  .product__item--price {
+    margin: 0.2rem 0;
+    .item__price,
+    .item__unit {
+      color: $color-text;
+      font-weight: 500;
+      font-size: $fs-16;
+    }
+    .item__sale {
+      margin-left: 0.2rem;
+      padding: 0.1rem 0.2rem;
+      border: 1px solid $color-red-sale;
+      color: $color-red-sale;
+      font-size: $fs-12;
+      border-radius: 0.2rem;
+      background-color: $color-bgc-red;
+      display: none;
+    }
+  }
+
+  .product__item--cheapRefund {
+    height: 1.1rem;
+    display: none;
+  }
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.product__item.sale {
+  .item__price,
+  .item__unit {
+    color: $color-red-sale;
+  }
+  .item__sale {
+    display: inline-block;
+  }
+}
+.product__item:hover {
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
+  z-index: 1;
+}
+
+.product__item.ad .product__item--ad {
+  display: inline-block;
+}
+.product__item.rating .product__item--rating {
+  display: inline-block;
+}
+.product__item.sold .product__item--sold {
+  display: inline-block;
+}
+.product__item.cheapRefund .product__item--cheapRefund {
+  display: block;
+}
+.product__item.freeShip .product__item--img--tag {
+  display: block;
+}

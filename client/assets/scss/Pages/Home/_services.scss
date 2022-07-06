@@ -1,0 +1,29 @@
+.service {
+  margin-top: 1rem;
+  .row {
+    border-radius: 0.4rem;
+    background-color: #fff;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  &__item {
+    padding: 1rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    img {
+      width: 3rem;
+      height: 3rem;
+      object-fit: cover;
+    }
+    span {
+      margin-top: 1rem;
+      display: block;
+      max-width: 5rem;
+      font-size: $fs-13;
+      color: $color-text-dark;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,234 @@
+.header {
+  background-color: $color-primary;
+  width: 100%;
+  // height: 6.25rem;
+  &__main {
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  &__mobile {
+    display: none;
+  }
+}
+
+.header__logo {
+  &--img {
+    width: 3.75rem;
+    height: 2.5rem;
+    object-fit: cover;
+    margin-bottom: 0.6rem;
+  }
+  .header__sublogo--img {
+    width: auto;
+    height: 0.9rem;
+    object-fit: cover;
+  }
+}
+
+.header__search {
+  // max-width: 55%;
+  margin-top: 1rem;
+  margin-left: 3.5rem;
+  font-size: $fs-13;
+  &--top {
+    input {
+      height: 2.5rem;
+      width: calc(100% - 7.5rem);
+      border-radius: 2px 0px 0px 2px;
+      border: none;
+      padding: 0px 0.8rem;
+    }
+    button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 7.5rem;
+      border: none;
+      color: $color-white;
+      background-color: #0d5cb6;
+      i {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  &--bottom {
+    margin-top: 0.5rem;
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      li a {
+        color: $color-white;
+        margin-right: 0.6rem;
+        font-size: $fs-11;
+      }
+    }
+  }
+}
+
+.header__right {
+  //   margin-top: 0.2rem;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-end;
+  position: relative;
+  color: $color-white;
+  i.large {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .header__auth {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    &--logo {
+      margin-right: 0.5rem;
+    }
+    &--process {
+      .header__auth--login {
+        font-size: $fs-11;
+        color: $color-white;
+      }
+      .header__auth--user {
+        font-size: $fs-13;
+        margin: 0;
+        position: relative;
+        i {
+          position: absolute;
+          top: 0;
+          margin-left: 0.2rem;
+        }
+      }
+    }
+  }
+
+  .header__seller {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.8rem;
+    font-size: $fs-12;
+  }
+  .row {
+    justify-content: flex-end;
+  }
+}
+.header__cart {
+  &--count {
+    display: inline-block;
+    position: relative;
+    margin: 0 0.2rem 0 1.5rem;
+    .header__cart--quantity {
+      position: absolute;
+      display: inline-block;
+      width: 1.4rem;
+      height: 1.4rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      right: -0.6rem;
+      border-radius: 50%;
+      background-color: $color-yellow;
+    }
+  }
+  &--cart {
+    font-size: $fs-13;
+  }
+}
+
+.header__sub {
+  height: 2.5rem;
+  width: 100%;
+  background-color: $color-white;
+}
+
+.submenu {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  li a {
+    color: $color-dark;
+    text-decoration: none;
+  }
+}
+#carouselSubMenu {
+  margin-top: 0;
+  i {
+    color: $color-dark;
+    font-weight: 500;
+  }
+}
+.carousel-control-prev.submenu-control-prev {
+  left: -1rem;
+  opacity: 1;
+}
+.carousel-control-next.submenu-control-next {
+  right: -1rem;
+  opacity: 1;
+}
+
+@media only screen and (max-width: 63.9375em) {
+  .container {
+    overflow: hidden;
+  }
+  .header .container {
+    padding: 0;
+  }
+  .header__main {
+    padding: 0.5rem 0.2rem;
+    justify-content: space-between;
+  }
+  .header__logo {
+    display: none;
+  }
+  .header__search {
+    margin: 0;
+    width: 80%;
+    input {
+      width: 100%;
+      margin: 0 0.5rem;
+      height: 2rem;
+    }
+    .search__button {
+      display: none;
+    }
+    &--bottom {
+      display: none;
+    }
+  }
+  .header__right {
+    .header__auth,
+    .header__seller,
+    .header__cart--cart {
+      display: none;
+    }
+    margin: 0;
+  }
+  .header__cart--count {
+    margin: 0;
+    margin-right: 1rem;
+  }
+  .header__mobile {
+    display: block;
+    i {
+      color: #fff;
+      font-size: $fs-24;
+      margin: 0.5rem;
+    }
+  }
+}

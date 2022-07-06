@@ -1,0 +1,54 @@
+.footer {
+  margin-top: 1rem;
+  background-color: #fff;
+  color: $color-text-gray;
+  font-size: $fs-12;
+
+  &__col {
+    list-style: none;
+    color: $color-text-gray;
+    width: calc(100% / 5);
+  }
+  &__header h4 {
+    font-size: $fs-16;
+    color: $color-text-dark;
+    font-weight: 500;
+    margin: 1rem 0;
+  }
+  li {
+    margin-bottom: 0.2rem;
+    a {
+      color: $color-text-gray;
+      font-size: $fs-12;
+    }
+  }
+}
+.footer__social {
+  a {
+    margin-right: 0.2rem;
+  }
+}
+.footer__download {
+  img {
+    padding-left: 0;
+  }
+  .footer__download--store {
+    padding-left: 0;
+  }
+  .footer__android img {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.footer__bottom {
+  p {
+    margin-bottom: 0.5rem;
+  }
+  padding-bottom: 1rem;
+}
+
+@media only screen and (max-width: 63.9375em) {
+  .footer {
+    display: none;
+  }
+}

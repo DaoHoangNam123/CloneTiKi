@@ -1,0 +1,87 @@
+.brandName {
+  margin-top: 1rem;
+  .carousel-indicators {
+    bottom: -2.8rem;
+  }
+  .carousel-indicators li {
+    background-color: $color-primary;
+    // opacity: 0.3;
+  }
+}
+.wrapper {
+  background-color: #fff;
+  padding: 0 1rem 1rem 1rem;
+}
+.brandName__header.row {
+  padding-bottom: 0;
+}
+.brandName__header {
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+  &--logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 1.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+  &--readMore {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: $color-primary;
+      font-size: $fs-15;
+    }
+  }
+}
+h3 {
+  color: $color-dark;
+  font-size: $fs-20;
+  margin: 0;
+}
+
+.wrapper__banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.carouselBrandName__img {
+  width: 49.5%;
+  border-radius: 0.5rem;
+}
+
+.brandName__content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+// item
+.brandName__item {
+  width: 12rem;
+  padding: 0;
+  position: relative;
+  border-radius: 0.5rem;
+  border: 1px solid #eeeeee;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  span {
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0;
+    text-align: center;
+    color: $color-primary;
+  }
+}
